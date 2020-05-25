@@ -51,7 +51,7 @@ public class GeofencingIntentSender {
     int transition = intentHelper.transitionForIntent(intent);
     int intentId = intentHelper.extractIntentId(intent);
     ParcelableGeofence geofence = (ParcelableGeofence) geofencingApi.geofenceForIntentId(intentId);
-    return (geofence.getTransitionTypes() & transition) != 0;
+    return geofence != null && (geofence.getTransitionTypes() & transition) != 0;
   }
 
   public Intent generateIntent(Intent intent, Location location) {
