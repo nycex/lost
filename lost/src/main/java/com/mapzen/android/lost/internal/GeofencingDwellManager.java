@@ -23,6 +23,8 @@ public class GeofencingDwellManager {
     int transition = intentHelper.transitionForIntent(intent);
     int intentId = intentHelper.extractIntentId(intent);
     ParcelableGeofence geofence = (ParcelableGeofence) geofencingApi.geofenceForIntentId(intentId);
+    if (geofence == null)
+      return;
     switch (transition) {
       case Geofence.GEOFENCE_TRANSITION_ENTER:
         geofencingApi.geofenceEntered(geofence, intentId);
